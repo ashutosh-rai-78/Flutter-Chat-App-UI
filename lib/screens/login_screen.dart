@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app_ui/screens/chats_list_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -9,7 +10,10 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
   double? h;
-
+// 4D63D5
+// 514ACF
+// 572DC9
+  Color primary = Color(0x4D63D5);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,6 +57,7 @@ class _LoginFrom extends StatefulWidget {
 }
 
 class __LoginFromState extends State<_LoginFrom> {
+  int? primary = 0x4D63D5;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -75,8 +80,16 @@ class __LoginFromState extends State<_LoginFrom> {
           TextField(
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 10.0),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+              /* border:
+                  OutlineInputBorder(borderRadius: BorderRadius.circular(50)), */
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff4D63D5), width: 2),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff4D63D5), width: 2),
+                borderRadius: BorderRadius.circular(50),
+              ),
               hintText: 'Type your email',
             ),
           ),
@@ -88,10 +101,23 @@ class __LoginFromState extends State<_LoginFrom> {
           const SizedBox(height: 5),
           TextField(
             decoration: InputDecoration(
-              suffixIcon: const Icon(Icons.hide_source),
+              suffixIcon: const Icon(
+                Icons.hide_source,
+                color: Color(0xff4D63D5),
+              ),
               contentPadding: const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 10.0),
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(50)),
+              /* border: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff4D63D5), width: 1),
+                borderRadius: BorderRadius.circular(50),
+              ), */
+              enabledBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff4D63D5), width: 2),
+                borderRadius: BorderRadius.circular(50),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(color: Color(0xff4D63D5), width: 2),
+                borderRadius: BorderRadius.circular(50),
+              ),
               hintText: 'Type your password',
             ),
           ),
@@ -103,21 +129,26 @@ class __LoginFromState extends State<_LoginFrom> {
                 style: TextStyle(
                     fontSize: 15,
                     fontWeight: FontWeight.bold,
-                    color: Colors.blue),
+                    color: Color(0xff4D63D5)),
               )),
           const SizedBox(height: 20),
           ElevatedButton(
               // ignore: prefer_const_constructors
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blue,
-                elevation: 5,
+                backgroundColor: Color(0xff4D63D5),
+                elevation: 3,
                 minimumSize: const Size(double.infinity, 50),
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(50)),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ChatsList()),
+                );
+              },
               child: const Text(
                 "Log in",
                 style: TextStyle(color: Colors.white),
@@ -128,14 +159,18 @@ class __LoginFromState extends State<_LoginFrom> {
             child: RichText(
               text: const TextSpan(
                 text: "Don't have an account?",
-                style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                ),
                 /*defining default style is optional */
                 children: <TextSpan>[
                   TextSpan(
                       text: ' Sign up',
                       style: TextStyle(
-                          color: Colors.blue, fontWeight: FontWeight.bold)),
+                          color: Color(0xff4D63D5),
+                          fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
