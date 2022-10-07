@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app_ui/screens/chats_list_screen.dart';
 import 'package:flutter_chat_app_ui/screens/login_screen.dart';
 
 void main() {
@@ -18,7 +19,8 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      // home: LoginScreen(),
+      home: ChatsList(),
     );
   }
 }
