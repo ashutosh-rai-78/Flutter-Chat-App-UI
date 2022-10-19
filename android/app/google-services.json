@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "789911718173",
+    "firebase_url": "https://login-app-update.firebaseio.com",
+    "project_id": "login-app-update",
+    "storage_bucket": "login-app-update.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789911718173:android:7354b2a5ab503b8fc0f9f4",
+        "android_client_info": {
+          "package_name": "com.example.flutter_chat_app_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7R32_dVCMpgTQP6kNSKF3ubiNgEQNR8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789911718173:android:e0e837f4074e8e52c0f9f4",
+        "android_client_info": {
+          "package_name": "com.example.loginappnew__"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789911718173-tmdk632o95t0661ledg613jr2ksj53bs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginappnew__",
+            "certificate_hash": "c6b486e534f0adf634eafd337377fa393fdf3911"
+          }
+        },
+        {
+          "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7R32_dVCMpgTQP6kNSKF3ubiNgEQNR8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789911718173:android:b0981411d66428bcc0f9f4",
+        "android_client_info": {
+          "package_name": "com.example.loginappupdate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789911718173-3imjg4rtqhveq5rq0s6ai93fhvm148ig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.loginappupdate",
+            "certificate_hash": "c6b486e534f0adf634eafd337377fa393fdf3911"
+          }
+        },
+        {
+          "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7R32_dVCMpgTQP6kNSKF3ubiNgEQNR8U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789911718173-ddfojn7kpgvqphjj0u9ce6627dc4o6ic.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
