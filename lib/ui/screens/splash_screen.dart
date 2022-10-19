@@ -17,20 +17,25 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     auth = locator();
     super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(seconds: 2));
+      if (!mounted) return;
       if (auth.hasCurrentUser()) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-          return ContactListScreen();
+          return const ContactListScreen();
         }));
       } else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-          return LoginScreen();
+          return const LoginScreen();
         }));
       }
     });
   }
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(),
+      body: const Center(child: CircularProgressIndicator()),
+    );
   }
 }

@@ -14,6 +14,10 @@ class Auth{
       return auth.currentUser;
   }
 
+  void logout(){
+    auth.signOut();
+  }
+
   Future<String> login(String email, String password) async {
     print(email);
     print(password);
