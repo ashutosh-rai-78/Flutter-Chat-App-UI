@@ -104,7 +104,18 @@ class __LoginFromState extends State<_LoginFrom> {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
-            AuthTextField(hint: "Enter your email", controller: emailController,),
+            AuthTextField(
+              hint: "Enter your email",
+              controller: emailController, type: AuthTextFieldType.email,
+                validator: (value) {
+                // Email Validation
+                  final regExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                  if (value == null || !regExp.hasMatch(value)) {
+                    return 'Email is not valid';
+                  }
+                  return null;
+                }),
+
             const SizedBox(height: 20),
             // -------------------- PASSWORD -----------------------------------------
             const Text(
@@ -112,7 +123,16 @@ class __LoginFromState extends State<_LoginFrom> {
               style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 5),
-            AuthTextField(hint: "Enter your password", controller: passwordController,isPassword: true,),
+            AuthTextField(
+                hint: "Enter your password",
+                controller: passwordController,
+                type: AuthTextFieldType.password,
+                validator: (value) {
+                  if (value == null || value.length < 4) {
+                    return 'Password is short';
+                  }
+                  return null;
+                }),
             const SizedBox(height: 20),
             // -------------------- FORGET PASSWORD ----------------------------------
             const Align(
@@ -138,18 +158,19 @@ class __LoginFromState extends State<_LoginFrom> {
                   ),
                 ),
                 onPressed: () async {
-                  final code = await auth.login(emailController.text, passwordController.text);
-                  if(!mounted) return;
-                  if(code == "success"){
+                  final code = await auth.login(
+                      emailController.text, passwordController.text);
+                  if (!mounted) return;
+                  if (code == "success") {
                     Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const ChatScreen()),
-                  );
-                  } else{
-                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(code)));
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const ChatScreen()),
+                    );
+                  } else {
+                    ScaffoldMessenger.of(context)
+                        .showSnackBar(SnackBar(content: Text(code)));
                   }
-
                 },
                 child: const Text(
                   "Log in",

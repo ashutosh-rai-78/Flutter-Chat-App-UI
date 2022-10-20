@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
 
+enum AuthTextFieldType{
+  password,
+  email,
+  text
+}
+
 class AuthTextField extends StatefulWidget {
   final String hint;
   final TextEditingController? controller;
-  final bool isPassword;
-  const AuthTextField({Key? key, required this.hint, this.controller, this.isPassword = false}) : super(key: key);
+  final AuthTextFieldType type;
+  final String? Function(String?)? validator;
+
+  const AuthTextField({Key? key, required this.hint, this.controller, this.type = AuthTextFieldType.text,  this.validator}) : super(key: key);
 
   @override
   State<AuthTextField> createState() => _AuthTextFieldState();
@@ -15,17 +23,12 @@ class _AuthTextFieldState extends State<AuthTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      validator: (value){
-        if(value == null || value.length < 4){
-          return 'length is to short';
-        }
-        return null;
-      },
-      keyboardType: widget.isPassword ? TextInputType.text : TextInputType.emailAddress,
-      obscureText: !isVisible && widget.isPassword,
+      validator: widget.validator,
+      keyboardType: _getKeyboardType(),
+      obscureText: !isVisible && widget.type == AuthTextFieldType.password,
       controller: widget.controller,
       decoration: InputDecoration(
-        suffixIcon: widget.isPassword == true? IconButton(
+        suffixIcon: widget.type == AuthTextFieldType.password? IconButton(
           icon: Icon(
             isVisible?Icons.visibility: Icons.visibility_off,
             color: Theme.of(context).colorScheme.primary,
@@ -52,4 +55,19 @@ class _AuthTextFieldState extends State<AuthTextField> {
       ),
     );
   }
+
+  TextInputType _getKeyboardType(){
+    switch(widget.type){
+
+      case AuthTextFieldType.password:
+        return TextInputType.text;
+      case AuthTextFieldType.email:
+       return TextInputType.emailAddress;
+      case AuthTextFieldType.text:
+        return TextInputType.text;
+
+    }
+  }
+
+
 }

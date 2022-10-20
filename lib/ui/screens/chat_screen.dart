@@ -71,7 +71,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   return Container(
                     padding: const EdgeInsets.all(8),
                     margin: EdgeInsets.only(
-                        left: MediaQuery.of(context).size.width / 3,
+                        left: MediaQuery.of(context).size.width / 1.8,
                         right: 10,
                         bottom: 10),
                     decoration: BoxDecoration(
@@ -82,47 +82,31 @@ class _ChatScreenState extends State<ChatScreen> {
                             bottomRight: Radius.circular(10))),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Text(
-                              item.timestamp.toString(),
-                              style: Theme.of(context).textTheme.caption,
-                            ),
-                            const Spacer(),
-                            // Text(item.email, style: Theme.of(context).textTheme.labelMedium?.copyWith(),),
-                          ],
+
+
+                        Text(
+                          item.message,
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
-                        const SizedBox(
-                          height: 5,
-                        ),
-                        Container(
-                          alignment: Alignment.bottomRight,
-                          width: double.infinity,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 0, horizontal: 5),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(6),
-                            color: Theme.of(context)
-                                .colorScheme
-                                .inverseSurface
-                                .withOpacity(0.2),
-                          ),
+                        Align(
+                          alignment: Alignment.centerRight,
                           child: Text(
-                            item.message,
-                            style: Theme.of(context).textTheme.bodyLarge,
+                            item.timestamp.toString(),
+                            style: Theme.of(context).textTheme.caption,
                           ),
-                        )
+                        ),
+
                       ],
                     ),
                   );
                 }
                 return Container(
                   padding: const EdgeInsets.all(8),
-                  height: 70,
+
                   margin: EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width / 3,
+                      right: MediaQuery.of(context).size.width / 1.8,
                       left: 10,
                       bottom: 10),
                   decoration: BoxDecoration(
@@ -133,46 +117,29 @@ class _ChatScreenState extends State<ChatScreen> {
                           bottomRight: Radius.circular(10))),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            item.email,
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary),
-                          ),
-                          // const Spacer(),
-                          Text(
-                            item.timestamp.toString(),
-                            style: Theme.of(context).textTheme.caption,
-                          ),
-                        ],
+                      Text(
+                        item.email,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.primary),
                       ),
-                      const SizedBox(
-                        height: 5,
+                      SizedBox(height: 5,),
+                      Text(
+                        item.message,
+                        style: Theme.of(context).textTheme.bodyLarge,
                       ),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 5),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(6),
-                          color: Theme.of(context)
-                              .colorScheme
-                              .inverseSurface
-                              .withOpacity(0.2),
-                        ),
+                      Align(
+                        alignment: Alignment.centerRight,
                         child: Text(
-                          item.message,
-                          style: Theme.of(context).textTheme.bodyLarge,
+                          item.timestamp.toString(),
+                          style: Theme.of(context).textTheme.caption,
                         ),
-                      )
+                      ),
                     ],
                   ),
                 );
