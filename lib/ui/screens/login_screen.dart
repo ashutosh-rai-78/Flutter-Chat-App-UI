@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/firebase/auth.dart';
+import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/contact_list_screen.dart';
 import 'package:flutter_chat_app_ui/ui/widgets/auth_text_field.dart';
 
@@ -85,96 +86,99 @@ class __LoginFromState extends State<_LoginFrom> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 200),
-          const Text(
-            "Welcome Back!",
-            style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 20),
-          // -------------------- EMAIL -------------------------------------------
-          const Text(
-            "Email",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 5),
-          AuthTextField(hint: "Enter your email", controller: emailController,),
-          const SizedBox(height: 20),
-          // -------------------- PASSWORD -----------------------------------------
-          const Text(
-            "Password",
-            style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 5),
-          AuthTextField(hint: "Enter your password", controller: passwordController,),
-          const SizedBox(height: 20),
-          // -------------------- FORGET PASSWORD ----------------------------------
-          const Align(
-              alignment: Alignment.topRight,
-              child: Text(
-                "Forgot Password?",
-                style: TextStyle(
-                    fontSize: 15,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xff4D63D5)),
-              )),
-          const SizedBox(height: 20),
-          // -------------------- LOGIN BUTTON ---------------------------------------
-          ElevatedButton(
-              // ignore: prefer_const_constructors
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xff4D63D5),
-                elevation: 3,
-                minimumSize: const Size(double.infinity, 50),
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(50)),
+      child: Form(
+        autovalidateMode: AutovalidateMode.onUserInteraction,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 200),
+            const Text(
+              "Welcome Back!",
+              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 20),
+            // -------------------- EMAIL -------------------------------------------
+            const Text(
+              "Email",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            AuthTextField(hint: "Enter your email", controller: emailController,),
+            const SizedBox(height: 20),
+            // -------------------- PASSWORD -----------------------------------------
+            const Text(
+              "Password",
+              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 5),
+            AuthTextField(hint: "Enter your password", controller: passwordController,isPassword: true,),
+            const SizedBox(height: 20),
+            // -------------------- FORGET PASSWORD ----------------------------------
+            const Align(
+                alignment: Alignment.topRight,
+                child: Text(
+                  "Forgot Password?",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xff4D63D5)),
+                )),
+            const SizedBox(height: 20),
+            // -------------------- LOGIN BUTTON ---------------------------------------
+            ElevatedButton(
+                // ignore: prefer_const_constructors
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xff4D63D5),
+                  elevation: 3,
+                  minimumSize: const Size(double.infinity, 50),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                  ),
                 ),
-              ),
-              onPressed: () async {
-                final code = await auth.login(emailController.text, passwordController.text);
-                if(!mounted) return;
-                if(code == "success"){
-                  Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => const ContactListScreen()),
-                );
-                } else{
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(code)));
-                }
+                onPressed: () async {
+                  final code = await auth.login(emailController.text, passwordController.text);
+                  if(!mounted) return;
+                  if(code == "success"){
+                    Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChatScreen()),
+                  );
+                  } else{
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(code)));
+                  }
 
-              },
-              child: const Text(
-                "Log in",
-                style: TextStyle(color: Colors.white),
-              )),
-          const SizedBox(height: 40),
-          Align(
-            alignment: Alignment.center,
-            child: RichText(
-              text: const TextSpan(
-                text: "Don't have an account?",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                },
+                child: const Text(
+                  "Log in",
+                  style: TextStyle(color: Colors.white),
+                )),
+            const SizedBox(height: 20),
+            Align(
+              alignment: Alignment.center,
+              child: RichText(
+                text: const TextSpan(
+                  text: "Don't have an account?",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),
+                  /*defining default style is optional */
+                  children: <TextSpan>[
+                    TextSpan(
+                        text: ' Sign up',
+                        style: TextStyle(
+                            color: Color(0xff4D63D5),
+                            fontWeight: FontWeight.bold)),
+                  ],
                 ),
-                /*defining default style is optional */
-                children: <TextSpan>[
-                  TextSpan(
-                      text: ' Sign up',
-                      style: TextStyle(
-                          color: Color(0xff4D63D5),
-                          fontWeight: FontWeight.bold)),
-                ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

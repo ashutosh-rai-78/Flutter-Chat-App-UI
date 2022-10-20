@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/firebase/auth.dart';
+import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/contact_list_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/login_screen.dart';
 
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
       if (!mounted) return;
       if (auth.hasCurrentUser()) {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
-          return const ContactListScreen();
+          return const ChatScreen();
         }));
       } else {
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) {
