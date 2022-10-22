@@ -3,6 +3,7 @@ import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/firebase/auth.dart';
 import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/contact_list_screen.dart';
+import 'package:flutter_chat_app_ui/ui/screens/signup_screen.dart';
 import 'package:flutter_chat_app_ui/ui/widgets/auth_text_field.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -99,9 +100,9 @@ class __LoginFromState extends State<_LoginFrom> {
             ),
             const SizedBox(height: 20),
             // -------------------- EMAIL -------------------------------------------
-            const Text(
+            Text(
               "Email",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(height: 5),
             AuthTextField(
@@ -118,9 +119,9 @@ class __LoginFromState extends State<_LoginFrom> {
 
             const SizedBox(height: 20),
             // -------------------- PASSWORD -----------------------------------------
-            const Text(
+            Text(
               "Password",
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(height: 5),
             AuthTextField(
@@ -135,21 +136,20 @@ class __LoginFromState extends State<_LoginFrom> {
                 }),
             const SizedBox(height: 20),
             // -------------------- FORGET PASSWORD ----------------------------------
-            const Align(
+            Align(
                 alignment: Alignment.topRight,
                 child: Text(
                   "Forgot Password?",
-                  style: TextStyle(
-                      fontSize: 15,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff4D63D5)),
+                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                      color: Theme.of(context).colorScheme.primary
+                  ),
                 )),
             const SizedBox(height: 20),
             // -------------------- LOGIN BUTTON ---------------------------------------
             ElevatedButton(
                 // ignore: prefer_const_constructors
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Color(0xff4D63D5),
+                  backgroundColor: Colors.cyan,
                   elevation: 3,
                   minimumSize: const Size(double.infinity, 50),
                   padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -172,32 +172,31 @@ class __LoginFromState extends State<_LoginFrom> {
                         .showSnackBar(SnackBar(content: Text(code)));
                   }
                 },
-                child: const Text(
+                child: Text(
                   "Log in",
-                  style: TextStyle(color: Colors.white),
+                  style:Theme.of(context).textTheme.bodyText2,
                 )),
             const SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: RichText(
-                text: const TextSpan(
-                  text: "Don't have an account?",
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),
-                  /*defining default style is optional */
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: ' Sign up',
-                        style: TextStyle(
-                            color: Color(0xff4D63D5),
-                            fontWeight: FontWeight.bold)),
-                  ],
-                ),
+            InkWell(
+               onTap: (){
+                 Navigator.pushReplacement(
+                   context,
+                   MaterialPageRoute(
+                       builder: (context) => const SignUpScreen()),
+                 );
+               },
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Don't have an account?", style: Theme.of(context).textTheme.bodyText2,),
+                  SizedBox(width: 5,),
+                  Text("Sign Up",style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                    color: Theme.of(context).colorScheme.primary
+                  )),
+                ],
               ),
-            ),
+            )
+
           ],
         ),
       ),

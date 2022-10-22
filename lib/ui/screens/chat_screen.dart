@@ -7,6 +7,7 @@ import 'package:flutter_chat_app_ui/firebase/auth.dart';
 import 'package:flutter_chat_app_ui/models/rt_db_model.dart';
 import 'package:flutter_chat_app_ui/ui/screens/login_screen.dart';
 import 'package:flutter_chat_app_ui/ui/widgets/auth_text_field.dart';
+import 'package:intl/intl.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -21,6 +22,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final List<RTModel> list = [];
   late StreamSubscription scrip;
   late TextEditingController controller;
+  final DateFormat formatter = DateFormat('dd-MM-yyyy hh:mm a');
 
   @override
   void initState() {
@@ -93,7 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            item.timestamp.toString(),
+                            formatter.format(DateTime.fromMillisecondsSinceEpoch(item.timestamp)),
                             style: Theme.of(context).textTheme.caption,
                           ),
                         ),
@@ -136,7 +138,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          item.timestamp.toString(),
+                          formatter.format(DateTime.fromMillisecondsSinceEpoch(item.timestamp)),
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
