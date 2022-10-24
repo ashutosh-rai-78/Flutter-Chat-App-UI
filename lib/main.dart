@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
+import 'package:flutter_chat_app_ui/ui/screens/contact_list_screen.dart';
+import 'package:flutter_chat_app_ui/ui/screens/signup_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/splash_screen.dart';
 import 'firebase_options.dart';
 
@@ -30,6 +32,8 @@ class MyApp extends StatelessWidget {
         colorSchemeSeed: Colors.blue,
       ),
       // home: LoginScreen(),
+      // home: SignUpScreen(),
+      // home: ContactListScreen(),
       home: SplashScreen(),
     );
   }

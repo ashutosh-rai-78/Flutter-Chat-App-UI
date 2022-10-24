@@ -57,10 +57,15 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text('Whatsapp Copy'),
         actions: [
-          IconButton(onPressed: (){
-            auth.logout();
-            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const LoginScreen()));
-          }, icon: const Icon(Icons.logout))
+          IconButton(
+              onPressed: () {
+                auth.logout();
+                Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const LoginScreen()));
+              },
+              icon: const Icon(Icons.logout))
         ],
       ),
       body: Column(
@@ -86,8 +91,6 @@ class _ChatScreenState extends State<ChatScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-
-
                         Text(
                           item.message,
                           style: Theme.of(context).textTheme.bodyLarge,
@@ -95,18 +98,18 @@ class _ChatScreenState extends State<ChatScreen> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: Text(
-                            formatter.format(DateTime.fromMillisecondsSinceEpoch(item.timestamp)),
+                            formatter.format(
+                                DateTime.fromMillisecondsSinceEpoch(
+                                    item.timestamp)),
                             style: Theme.of(context).textTheme.caption,
                           ),
                         ),
-
                       ],
                     ),
                   );
                 }
                 return Container(
                   padding: const EdgeInsets.all(8),
-
                   margin: EdgeInsets.only(
                       right: MediaQuery.of(context).size.width / 1.8,
                       left: 10,
@@ -127,10 +130,11 @@ class _ChatScreenState extends State<ChatScreen> {
                             .textTheme
                             .labelMedium
                             ?.copyWith(
-                                color:
-                                    Theme.of(context).colorScheme.primary),
+                                color: Theme.of(context).colorScheme.primary),
                       ),
-                      SizedBox(height: 5,),
+                      SizedBox(
+                        height: 5,
+                      ),
                       Text(
                         item.message,
                         style: Theme.of(context).textTheme.bodyLarge,
@@ -138,7 +142,8 @@ class _ChatScreenState extends State<ChatScreen> {
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text(
-                          formatter.format(DateTime.fromMillisecondsSinceEpoch(item.timestamp)),
+                          formatter.format(DateTime.fromMillisecondsSinceEpoch(
+                              item.timestamp)),
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
@@ -194,6 +199,9 @@ class _ChatScreenState extends State<ChatScreen> {
                     icon: const Icon(Icons.send))
               ],
             ),
+          ),
+          SizedBox(
+            height: 5,
           )
         ],
       ),

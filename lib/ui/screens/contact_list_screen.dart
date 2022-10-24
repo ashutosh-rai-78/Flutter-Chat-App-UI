@@ -1,3 +1,4 @@
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/firebase/auth.dart';
@@ -13,12 +14,20 @@ class ContactListScreen extends StatefulWidget {
 class _ContactListScreenState extends State<ContactListScreen> {
 
   late Auth auth;
+  late DatabaseReference ref;
+  String? KeyV;
+
 
   @override
   void initState() {
     auth = locator();
+    ref = FirebaseDatabase.instance.ref("chats");
+    // final event = await ref.once(DatabaseEventType.value);
+
     super.initState();
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,8 @@ class _ContactListScreenState extends State<ContactListScreen> {
           const SizedBox(
             height: 50,
           ),
-          Container(
+          ElevatedButton(onPressed: (){}, child: Text("Chats"))
+          /*Container(
             // color: Colors.amber,
             child: ListTile(
               leading: ClipRRect(
@@ -64,7 +74,7 @@ class _ContactListScreenState extends State<ContactListScreen> {
                 color: Color(0xff4D63D5),
               ),
             ),
-          ),
+          ),*/
         ],
       ),
     );

@@ -106,11 +106,13 @@ class __LoginFromState extends State<_LoginFrom> {
             ),
             const SizedBox(height: 5),
             AuthTextField(
-              hint: "Enter your email",
-              controller: emailController, type: AuthTextFieldType.email,
+                hint: "Enter your email",
+                controller: emailController,
+                type: AuthTextFieldType.email,
                 validator: (value) {
-                // Email Validation
-                  final regExp = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+                  // Email Validation
+                  final regExp = RegExp(
+                      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
                   if (value == null || !regExp.hasMatch(value)) {
                     return 'Email is not valid';
                   }
@@ -121,7 +123,7 @@ class __LoginFromState extends State<_LoginFrom> {
             // -------------------- PASSWORD -----------------------------------------
             Text(
               "Password",
-                style: Theme.of(context).textTheme.bodyText1,
+              style: Theme.of(context).textTheme.bodyText1,
             ),
             const SizedBox(height: 5),
             AuthTextField(
@@ -140,63 +142,67 @@ class __LoginFromState extends State<_LoginFrom> {
                 alignment: Alignment.topRight,
                 child: Text(
                   "Forgot Password?",
-                  style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                      color: Theme.of(context).colorScheme.primary
-                  ),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText2
+                      ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 )),
             const SizedBox(height: 20),
             // -------------------- LOGIN BUTTON ---------------------------------------
-            ElevatedButton(
-                // ignore: prefer_const_constructors
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.cyan,
-                  elevation: 3,
-                  minimumSize: const Size(double.infinity, 50),
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
+            Align(
+              alignment: Alignment.center,
+              child: ElevatedButton(
+                  // ignore: prefer_const_constructors
+                  style: ButtonStyle(
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                        EdgeInsets.symmetric(horizontal: 50, vertical: 12)),
                   ),
-                ),
-                onPressed: () async {
-                  final code = await auth.login(
-                      emailController.text, passwordController.text);
-                  if (!mounted) return;
-                  if (code == "success") {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const ChatScreen()),
-                    );
-                  } else {
-                    ScaffoldMessenger.of(context)
-                        .showSnackBar(SnackBar(content: Text(code)));
-                  }
-                },
-                child: Text(
-                  "Log in",
-                  style:Theme.of(context).textTheme.bodyText2,
-                )),
+                  onPressed: () async {
+                    final code = await auth.login(
+                        emailController.text, passwordController.text);
+                    if (!mounted) return;
+                    if (code == "success") {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const ChatScreen()),
+                      );
+                    } else {
+                      ScaffoldMessenger.of(context)
+                          .showSnackBar(SnackBar(content: Text(code)));
+                    }
+                  },
+                  child: Text(
+                    "Log in",
+                    style: Theme.of(context).textTheme.bodyText1?.copyWith(
+                        color: Theme.of(context).colorScheme.primary
+                    ),
+                  )),
+            ),
             const SizedBox(height: 20),
-            InkWell(
-               onTap: (){
-                 Navigator.pushReplacement(
-                   context,
-                   MaterialPageRoute(
-                       builder: (context) => const SignUpScreen()),
-                 );
-               },
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SignUpScreen()),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Don't have an account?", style: Theme.of(context).textTheme.bodyText2,),
-                  SizedBox(width: 5,),
-                  Text("Sign Up",style: Theme.of(context).textTheme.bodyText2?.copyWith(
-                    color: Theme.of(context).colorScheme.primary
-                  )),
+                  Text(
+                    "Don't have an account?",
+                    style: Theme.of(context).textTheme.bodyText2,
+                  ),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text("Sign Up",
+                      style: Theme.of(context).textTheme.bodyText2?.copyWith(
+                          color: Theme.of(context).colorScheme.primary)),
                 ],
               ),
             )
-
           ],
         ),
       ),
