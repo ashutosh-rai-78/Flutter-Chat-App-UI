@@ -5,6 +5,7 @@ import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/contact_list_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/signup_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/splash_screen.dart';
+import 'package:flutter_chat_app_ui/ui/screens/user_profile_setup_screen.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
@@ -34,6 +35,7 @@ class MyApp extends StatelessWidget {
       // home: LoginScreen(),
       // home: SignUpScreen(),
       // home: ContactListScreen(),
+      // home: UserProfileSetupScreen(),
       home: SplashScreen(),
     );
   }

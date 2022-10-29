@@ -23,6 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
   late StreamSubscription scrip;
   late TextEditingController controller;
   final DateFormat formatter = DateFormat('dd-MM-yyyy hh:mm a');
+  late bool isLoading = true;
 
   @override
   void initState() {
@@ -31,6 +32,12 @@ class _ChatScreenState extends State<ChatScreen> {
     auth = locator();
     controller = TextEditingController();
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(seconds: 2));
+      setState(() {
+        isLoading = false;
+      });
+    });
     readData();
   }
 
@@ -55,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Whatsapp Copy'),
+        title: const Text('Group Chats'),
         actions: [
           IconButton(
               onPressed: () {
@@ -68,13 +75,15 @@ class _ChatScreenState extends State<ChatScreen> {
               icon: const Icon(Icons.logout))
         ],
       ),
-      body: Column(
+      body: isLoading ? const Center(child: CircularProgressIndicator()) :  Column(
         children: [
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) {
                 final item = list[index];
-                if (item.email == auth.requireCurrentUser().email) {
+                if (item.email == auth.requireCurrentUser().displayName) {
+
+                  // -----------------------------------------------User Side---------------------------------------------
                   return Container(
                     padding: const EdgeInsets.all(8),
                     margin: EdgeInsets.only(
@@ -91,6 +100,18 @@ class _ChatScreenState extends State<ChatScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Text(
+                          auth.requireCurrentUser().displayName.toString(),
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
+                        ),
+                        SizedBox(
+                          height: 5,
+                        ),
+
                         Text(
                           item.message,
                           style: Theme.of(context).textTheme.bodyLarge,
@@ -130,7 +151,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             .textTheme
                             .labelMedium
                             ?.copyWith(
-                                color: Theme.of(context).colorScheme.primary),
+                            color: Theme.of(context).colorScheme.primary),
                       ),
                       SizedBox(
                         height: 5,
@@ -182,16 +203,16 @@ class _ChatScreenState extends State<ChatScreen> {
               children: [
                 Expanded(
                     child: AuthTextField(
-                  hint: "Message...",
-                  controller: controller,
-                )),
+                      hint: "Message...",
+                      controller: controller,
+                    )),
                 const SizedBox(
                   width: 10,
                 ),
                 IconButton(
                     onPressed: () {
                       ref.push().set({
-                        "from": auth.requireCurrentUser().email.toString(),
+                        "from": auth.requireCurrentUser().displayName.toString(),
                         "message": controller.text,
                         "timestamp": DateTime.now().millisecondsSinceEpoch,
                       });

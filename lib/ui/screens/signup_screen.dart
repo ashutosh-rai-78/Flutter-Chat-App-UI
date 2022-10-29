@@ -3,6 +3,7 @@ import 'package:flutter_chat_app_ui/di/get_it.dart';
 import 'package:flutter_chat_app_ui/firebase/auth.dart';
 import 'package:flutter_chat_app_ui/ui/screens/chat_screen.dart';
 import 'package:flutter_chat_app_ui/ui/screens/login_screen.dart';
+import 'package:flutter_chat_app_ui/ui/screens/user_profile_setup_screen.dart';
 import 'package:flutter_chat_app_ui/ui/widgets/auth_text_field.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -137,7 +138,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const ChatScreen()),
+                              builder: (context) => const UserProfileSetupScreen()),
                         );
                       } else {
                         ScaffoldMessenger.of(context)
